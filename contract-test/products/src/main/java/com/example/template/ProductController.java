@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
 public class ProductController {
     private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -14,13 +15,6 @@ public class ProductController {
 
     @GetMapping("/product/{productId}")
     Product productStockCheck(@PathVariable(value = "productId") Long productId) {
-
-//        System.out.println("productStockCheck call");
-//        try {
-//            Thread.sleep(500);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
 
         return  this.productService.getProductById(productId);
     }

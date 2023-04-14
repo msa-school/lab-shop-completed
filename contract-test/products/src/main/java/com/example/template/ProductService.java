@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.StreamListener;
-import org.springframework.messaging.handler.annotation.Headers;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
@@ -61,11 +60,18 @@ public class ProductService {
     /**
      * 상품 조회
      */
-    public Product getProductById(Long id){
-
+    public Product getProductById(Long id) {
         Optional<Product> productOptional = productRepository.findById(id);
-        Product product = productOptional.get();
+        return productOptional.orElseGet(this::makeProduct);
+    }
 
+    private Product makeProduct() {
+        Product product = new Product();
+        product.setId(1L);
+        product.setName("TV");
+        product.setPrice(10000);
+        product.setStock(10);
+        product.setImageUrl("testUrl");
         return product;
     }
 

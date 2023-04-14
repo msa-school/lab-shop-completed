@@ -16,9 +16,10 @@
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<java.version>1.8</java.version>
-		<spring-cloud.version>Hoxton.SR6</spring-cloud.version>
-		<spring-cloud-contract.version>2.1.2.RELEASE</spring-cloud-contract.version>
+		<java.version>11</java.version>
+		<spring-boot.version>2.3.1.RELEASE</spring-boot.version>		
+		<spring-cloud.version>2.1.1.RELEASE</spring-cloud.version>
+		<spring-cloud-contract.version>2.1.1.RELEASE</spring-cloud-contract.version>
 	</properties>
 
 	<dependencies>
@@ -34,7 +35,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
+		</dependency>	
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -58,6 +59,7 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-stream-kafka</artifactId>
+			<version>${spring-cloud.version}</version>			
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -68,50 +70,23 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-stream-test-support</artifactId>
+			<version>${spring-cloud.version}</version>			
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-contract-verifier</artifactId>
 			<version>${spring-cloud-contract.version}</version>
 			<scope>test</scope>
 		</dependency>
-
-		<!-- Add Stackdriver Trace Starter -->
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.cloud</groupId>-->
-<!--			<artifactId>spring-cloud-gcp-starter-trace</artifactId>-->
-<!--		</dependency>-->
-
 	</dependencies>
-
-<!--	<repositories>-->
-<!--		<repository>-->
-<!--			<id>eventstorming</id>-->
-<!--			<url>https://pkgs.dev.azure.com/eventstorming/_packaging/eventstorming/maven/v1</url>-->
-<!--			<releases>-->
-<!--				<enabled>true</enabled>-->
-<!--			</releases>-->
-<!--			<snapshots>-->
-<!--				<enabled>true</enabled>-->
-<!--			</snapshots>-->
-<!--		</repository>-->
-<!--	</repositories>-->
-<!--	<distributionManagement>-->
-<!--		<repository>-->
-<!--			<id>eventstorming</id>-->
-<!--			<url>https://pkgs.dev.azure.com/eventstorming/_packaging/eventstorming/maven/v1</url>-->
-<!--		</repository>-->
-<!--	</distributionManagement>-->
-
-
+	
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
+				<version>Hoxton.SR6</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -123,22 +98,25 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>				
 			</plugin>
 			<!-- SPRING CLOUD CONTRACT -->
 			<plugin>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-contract-maven-plugin</artifactId>
-				<version>${spring-cloud-contract.version}</version>
+				<version>2.1.1.RELEASE</version>
 				<extensions>true</extensions>
 				<configuration>
-					<packageWithBaseClasses>com.example.template</packageWithBaseClasses>
-					<baseClassMappings>
-						<baseClassMapping>
-							<contractPackageRegex>.*com.*</contractPackageRegex>
-							<baseClassFQN>com.example.template.RestBase</baseClassFQN>
-						</baseClassMapping>
-					</baseClassMappings>
-					<testMode>EXPLICIT</testMode>
+					<baseClassForTests>
+						com.example.template.RestBase
+					</baseClassForTests>
 				</configuration>
 			</plugin>
 			<!-- SPRING CLOUD CONTRACT -->
