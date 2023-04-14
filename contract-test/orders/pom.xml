@@ -54,13 +54,13 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
-		<!-- test -->
+		<!-- test 
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-stream-test-support</artifactId>
 			<version>${spring-cloud.version}</version>				
 			<scope>test</scope>
-		</dependency>
+		</dependency-->
 
 		<!-- Client Sdie Contract dependencies  -->
 		<dependency>
