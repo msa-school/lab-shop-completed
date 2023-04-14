@@ -10,7 +10,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>boot-camp-products</artifactId>
+	<artifactId>products</artifactId>
 	<version>0.0.1.BUILD-SNAPSHOT</version>
 	<name>boot-camp-products</name>
 	<description>Demo project for Spring Boot</description>
@@ -66,7 +66,7 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
-		<!-- test -->
+		<!-- Producer Sdie Contract dependencies  -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-stream-test-support</artifactId>
