@@ -69,12 +69,6 @@
 		<!-- Producer Sdie Contract dependencies  -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-stream-test-support</artifactId>
-			<version>${spring-cloud.version}</version>			
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-contract-verifier</artifactId>
 			<version>${spring-cloud-contract.version}</version>
 			<scope>test</scope>
