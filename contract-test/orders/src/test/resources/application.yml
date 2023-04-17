@@ -32,4 +32,4 @@ spring:
 
 api:
   url:
-    product: "http://localhost:8090/product/"
+    product: "http://localhost:8090"

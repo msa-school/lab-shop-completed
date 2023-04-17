@@ -17,14 +17,14 @@ public class OrderController {
 
     @Value("${api.url.product}")
     private String apiUrl;
-    
+
     @Autowired
     private RestTemplate restTemplate;
 
     @GetMapping("/order/validateProduct/{productId}")
     public ResponseEntity<String> productStockCheck(@PathVariable(value = "productId") Long productId) {
     
-        String productUrl = apiUrl + productId;
+        String productUrl = apiUrl + "/product/" + productId;
     
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
