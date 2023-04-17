@@ -1,6 +1,7 @@
 package com.example.template;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -14,13 +15,16 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 public class OrderController {
 
+    @Value("${api.url.product}")
+    private String apiUrl;
+    
     @Autowired
     private RestTemplate restTemplate;
 
     @GetMapping("/order/validateProduct/{productId}")
     public ResponseEntity<String> productStockCheck(@PathVariable(value = "productId") Long productId) {
     
-        String productUrl = "http://localhost:8090/product/" + productId;
+        String productUrl = apiUrl + productId;
     
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
